@@ -22,6 +22,12 @@ public class ControlRegalos {
         return productosConEdad5;
     }
 
+    public ControlRegalos(){
+        getProductos();
+        getProveedores();
+
+    }
+
     public void mostrarRegalos(List<Double>precios, List<Producto>productos){
         System.out.println("==============================================================================");
         if (precios.size() == 0 || productos.size() == 0) {
@@ -40,9 +46,6 @@ public class ControlRegalos {
     }
 
 
-    public void buscarProveedor(String nombre){
-
-    }
 
     public List<Producto> getProductos(){
         productos = new ArrayList<>();
@@ -69,7 +72,7 @@ public class ControlRegalos {
 
     public void imprimirProductos(List<Producto> productos) {
         System.out.println("Lista de Productos:");
-        for (Producto producto : productos) {
+        for (Producto producto : getProductos()) {
             System.out.println("Nombre: " + producto.getNombre());
             System.out.println("Edad: " + producto.getEdad());
             System.out.println("Precio: " + producto.getPrecio());
@@ -81,7 +84,7 @@ public class ControlRegalos {
 
     public void imprimirProveedores(List<Proveedor> proveedores) {
         System.out.println("Lista de Proveedores:");
-        for (Proveedor proveedor : proveedores) {
+        for (Proveedor proveedor : getProveedores()) {
             System.out.println("Nombre: " + proveedor.getNombre());
             System.out.println("PrecioEnvio: " + proveedor.getPrecioEnvio());
             System.out.println("-------------------------");
@@ -99,8 +102,6 @@ public class ControlRegalos {
 
     public List<Double> calcularPreciosEnvios(List<Producto>productos){
         Map<String, Double> preciosEnvioPorProveedor = new HashMap<>();
-        Map<String, Double> preciosproductoenvio = new HashMap<>();
-
         List<Double> preciosEnvio = new ArrayList<>();
         for (Proveedor proveedor : proveedores) {
             preciosEnvioPorProveedor.put(proveedor.getNombre(), proveedor.getPrecioEnvio());
