@@ -19,8 +19,12 @@ public class ControlDatos {
 
     }
 
-
-
+    /**
+     * Lee un archivo JSON desde la ubicación de archivo especificada, analiza su contenido y llena una lista de objetos Producto.
+     *
+     * @param filePath   Ruta del archivo JSON a leer.
+     * @param productos  Lista de objetos Producto para llenar con los datos del archivo.
+     */
 
     public  void readAndFillProductos(String filePath, List<Producto> productos) {
         try {
@@ -52,7 +56,13 @@ public class ControlDatos {
     }
 
 
-
+    /**
+     * Lee un archivo JSON desde la ubicación de archivo especificada,
+     * analiza su contenido y llena una lista de objetos Producto.
+     *
+     * @param filePath   Ruta del archivo JSON a leer.
+     * @param proveedores  Lista de objetos Producto para llenar con los datos del archivo.
+     */
     public  void readAndFillProveedores(String filePath, List<Proveedor> proveedores) {
         try {
             // Crear un objeto JSONParser

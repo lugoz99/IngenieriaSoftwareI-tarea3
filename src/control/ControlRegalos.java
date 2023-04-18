@@ -13,21 +13,24 @@ import java.util.stream.Collectors;
 
 public class ControlRegalos {
 
-    private List<Producto> regalos;
     private List<Producto> productos;
     private List<Proveedor> proveedores;
-    private List<Producto>productosConEdad5;
+    private final String RUTA_ARCHIVO_PROVEEDOR = "src/data/provedores.json";
+    private final String RUTA_ARCHIVO_PRODUCTO = "src/data/productos.json";
 
-    public List<Producto> getProductosConEdad5() {
-        return productosConEdad5;
-    }
 
     public ControlRegalos(){
-        getProductos();
         getProveedores();
-
+        getProductos();
     }
 
+
+    /**
+     * Muestra información sobre los productos y los precios de envío en la consola.
+     *
+     * @param precios     Lista de precios de envío correspondientes a los productos.
+     * @param productos   Lista de productos para los cuales se mostrará la información.
+     */
     public void mostrarRegalos(List<Double>precios, List<Producto>productos){
         System.out.println("==============================================================================");
         if (precios.size() == 0 || productos.size() == 0) {
@@ -46,23 +49,27 @@ public class ControlRegalos {
     }
 
 
-
+    /**
+     * @return una lista de productos o regalos
+     */
     public List<Producto> getProductos(){
         productos = new ArrayList<>();
         ControlDatos datos = new ControlDatos();
-        String filePath = "src/data/productos.json"; // Ruta del archivo
-        datos.readAndFillProductos(filePath,productos);
+        datos.readAndFillProductos(RUTA_ARCHIVO_PRODUCTO,productos);
         return productos;
 
 
     }
 
 
+    /**
+     *
+     * @return una lista de proveedores
+     */
     public List<Proveedor> getProveedores(){
         proveedores = new ArrayList<>();
         ControlDatos datos = new ControlDatos();
-        String filePath = "src/data/provedores.json"; // Ruta del archivo
-        datos.readAndFillProveedores(filePath,proveedores);
+        datos.readAndFillProveedores(RUTA_ARCHIVO_PROVEEDOR,proveedores);
         return proveedores;
 
 
@@ -92,6 +99,14 @@ public class ControlRegalos {
     }
 
 
+    /**
+     * Busca productos en la lista de productos basándose en la edad y el precio máximo.
+     *
+     * @param edad          La edad a buscar en los productos.
+     * @param productos     La lista de productos en la que se realizará la búsqueda.
+     * @param precioMaximo  El precio máximo permitido para los productos buscados.
+     * @return              Una lista de productos que cumplen con los criterios de búsqueda.
+     */
     public List<Producto> buscarRegaloporEdad(int edad, List<Producto>productos,double precioMaximo){
         return productos.stream()
                 .filter(producto -> producto.getEdad() == edad && producto.getPrecio() < precioMaximo)
@@ -100,6 +115,15 @@ public class ControlRegalos {
     }
 
 
+    /**
+     * @param productos
+     * @return
+     * se retorna una lista de precio de envio de los proveedores
+     * para asociar los precios de envío con los nombres de proveedores.
+     * Se crea una lista vacía de Double llamada preciosEnvio para almacenar
+     * los precios de envío calculados. Se itera
+     * a través de la lista de proveedores y se agrega al mapa
+     */
     public List<Double> calcularPreciosEnvios(List<Producto>productos){
         Map<String, Double> preciosEnvioPorProveedor = new HashMap<>();
         List<Double> preciosEnvio = new ArrayList<>();
