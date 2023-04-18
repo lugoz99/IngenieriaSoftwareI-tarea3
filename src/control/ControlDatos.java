@@ -18,24 +18,7 @@ public class ControlDatos {
     public ControlDatos(){
 
     }
-    public  JSONObject readJsonFile(String filePath) {
-        try {
-            // Crear un objeto JSONParser
-            JSONParser parser = new JSONParser();
 
-            // Leer el archivo JSON
-            FileReader fileReader = new FileReader(filePath);
-            Object obj = parser.parse(fileReader);
-
-            // Convertir el objeto JSON en un objeto JSONObject
-            JSONObject jsonObject = (JSONObject) obj;
-
-            return jsonObject;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 
 
 
@@ -57,7 +40,8 @@ public class ControlDatos {
                 String nombre = (String) jsonProducto.get("nombre");
                 int edad = Integer.parseInt(jsonProducto.get("edad").toString());
                 double precio = Double.parseDouble(jsonProducto.get("precio").toString());
-                String proveedor = (String) jsonProducto.get("proveedor");
+                String proveedor1 = (String) jsonProducto.get("proveedor");
+                Proveedor proveedor = new Proveedor(proveedor1);
                 // Crear un objeto Producto y agregarlo a la lista
                 Producto prod = new Producto(nombre, edad, precio, proveedor);
                 productos.add(prod);

@@ -9,6 +9,11 @@ public class Proveedor {
         this.precioEnvio = precioEnvio;
     }
 
+
+    public  Proveedor(String nombre){
+        this.nombre = nombre;
+    }
+
     public String getNombre() {
         return nombre;
     }

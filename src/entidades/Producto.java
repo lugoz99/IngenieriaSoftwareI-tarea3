@@ -5,9 +5,9 @@ public class Producto {
     private String nombre;
     private int edad;
     private double precio;
-    private String proveedor;
+    private Proveedor proveedor;
 
-    public Producto(String nombre, int edad, double precio,String proveedor){
+    public Producto(String nombre, int edad, double precio,Proveedor proveedor){
         this.nombre = nombre;
         this.edad = edad;
         this.precio = precio;
@@ -23,7 +23,7 @@ public class Producto {
         return precio;
     }
 
-    public String getProveedor() {
+    public Proveedor getProveedor() {
         return proveedor;
     }
 

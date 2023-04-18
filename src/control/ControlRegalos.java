@@ -106,7 +106,7 @@ public class ControlRegalos {
             preciosEnvioPorProveedor.put(proveedor.getNombre(), proveedor.getPrecioEnvio());
         }
         for (Producto producto : productos) {
-            String nombreProveedor = producto.getProveedor();
+            String nombreProveedor = producto.getProveedor().getNombre();
                 double precioEnvio = preciosEnvioPorProveedor.get(nombreProveedor);
                 preciosEnvio.add(precioEnvio);
 
